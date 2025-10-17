@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo, useRef } from "react";
 import {
   useWidgetProps,
   useMaxHeight,
   useDisplayMode,
   useRequestDisplayMode,
   useIsChatGptApp,
+  useOpenExternal,
 } from "./hooks";
 
 export default function Home() {
@@ -19,8 +21,68 @@ export default function Home() {
   const displayMode = useDisplayMode();
   const requestDisplayMode = useRequestDisplayMode();
   const isChatGptApp = useIsChatGptApp();
+  const openExternal = useOpenExternal();
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   const name = toolOutput?.result?.structuredContent?.name || toolOutput?.name;
+
+  const hotels = useMemo(
+    () =>
+      [
+        {
+          id: "1",
+          name: "Taj Holiday Village Resort & Spa, Goa",
+          location: "Sinquerim, Candolim",
+          price: "₹16,500",
+          rating: 4.6,
+          image: "/window.svg",
+          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        },
+        {
+          id: "2",
+          name: "Novotel Goa Resort & Spa",
+          location: "Candolim",
+          price: "₹12,300",
+          rating: 4.4,
+          image: "/globe.svg",
+          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        },
+        {
+          id: "3",
+          name: "ITC Grand Goa, A Luxury Collection Resort",
+          location: "Cansaulim",
+          price: "₹18,900",
+          rating: 4.7,
+          image: "/file.svg",
+          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        },
+        {
+          id: "4",
+          name: "The Zuri White Sands, Goa Resort & Casino",
+          location: "Varca",
+          price: "₹14,750",
+          rating: 4.3,
+          image: "/vercel.svg",
+          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        },
+        {
+          id: "5",
+          name: "Kenilworth Beach Resort & Spa",
+          location: "Utorda",
+          price: "₹13,200",
+          rating: 4.2,
+          image: "/next.svg",
+          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        },
+      ],
+    []
+  );
+
+  const scrollBy = (delta: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: delta, behavior: "smooth" });
+  };
 
   return (
     <div
@@ -52,7 +114,7 @@ export default function Home() {
           </svg>
         </button>
       )}
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
         {!isChatGptApp && (
           <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg px-4 py-3 w-full">
             <div className="flex items-center gap-3">
@@ -88,34 +150,88 @@ export default function Home() {
             </div>
           </div>
         )}
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Welcome to the ChatGPT Apps SDK Next.js Starter
-          </li>
-          <li className="mb-2 tracking-[-.01em]">
-            Name returned from tool call: {name ?? "..."}
-          </li>
-          <li className="mb-2 tracking-[-.01em]">MCP server path: /mcp</li>
-        </ol>
+        <div className="w-full flex items-center justify-between">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
+              Resorts in Goa
+            </h1>
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              Mocked from <span className="font-mono">makemytrip.com/hotels/p-resorts-in-goa.html</span>
+              {name ? ` · Hello, ${name}` : ""}
+            </p>
+          </div>
+          {displayMode !== "fullscreen" && (
+            <div className="hidden sm:flex gap-2">
+              <button
+                className="rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 shadow-lg ring-1 ring-slate-900/10 dark:ring-white/10 p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700"
+                onClick={() => scrollBy(-320)}
+                aria-label="Scroll left"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+              <button
+                className="rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 shadow-lg ring-1 ring-slate-900/10 dark:ring-white/10 p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700"
+                onClick={() => scrollBy(320)}
+                aria-label="Scroll right"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div
+          ref={scrollerRef}
+          className="w-full flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 py-2"
+          style={{ scrollBehavior: "smooth" }}
+        >
+          {hotels.map((h) => (
+            <div
+              key={h.id}
+              className="min-w-[260px] max-w-[260px] snap-start bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm"
+            >
+              <div className="h-40 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                <img src={h.image} alt={h.name} className="w-24 h-24 object-contain" />
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <div>
+                  <h3 className="text-base font-semibold line-clamp-2">{h.name}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400">{h.location}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-amber-500">
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 00-1.175 0l-2.802 2.036c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span className="text-sm font-medium">{h.rating}</span>
+                  </div>
+                  <span className="text-sm font-semibold">{h.price} / night</span>
+                </div>
+                <button
+                  className="mt-1 rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm h-9 px-3"
+                  onClick={() => openExternal(h.url)}
+                >
+                  View on MakeMyTrip
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Link
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
             prefetch={false}
-            href="https://www.makemytrip.com/hotels/budget-hotels-in-goa.html"
+            href="/custom-page"
           >
-            Visit Next
+            Visit another page
           </Link>
           <a
-            href="https://www.makemytrip.com/hotels/budget-hotels-in-goa.html"
+            href="https://vercel.com/templates/ai/chatgpt-app-with-next-js"
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
