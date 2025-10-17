@@ -112,10 +112,10 @@ export default function Home() {
             prefetch={false}
             href="/custom-page"
           >
-            Visit another page
+            Visit Next
           </Link>
           <a
-            href="https://vercel.com/templates/ai/chatgpt-app-with-next-js"
+            href="https://www.makemytrip.com/hotels/budget-hotels-in-goa.html"
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
