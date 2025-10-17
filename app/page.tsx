@@ -43,6 +43,9 @@ export default function Home() {
     rating: number;
     image: string;
     url: string;
+    propertyLabel: string;
+    distance: string;
+    taxes: string;
   };
 
   const hotels = useMemo<HotelCard[]>(() => {
@@ -173,11 +176,18 @@ export default function Home() {
       const location = Array.isArray(r.locationPersuasion)
         ? r.locationPersuasion.join(" · ")
         : "";
+      const distance = Array.isArray(r.locationPersuasion) && r.locationPersuasion.length > 1
+        ? r.locationPersuasion[1]
+        : (Array.isArray(r.locationPersuasion) ? r.locationPersuasion[0] : "");
+      const propertyLabel = /resort/i.test(r.name) ? "Resort" : "Hotel";
       const price = formatINR(
         r.priceDetail?.discountedPriceWithTax ??
           r.priceDetail?.priceWithTax ??
           r.priceDetail?.price
       );
+      const base = r.priceDetail?.discountedPrice ?? r.priceDetail?.price ?? null;
+      const withTax = r.priceDetail?.discountedPriceWithTax ?? r.priceDetail?.priceWithTax ?? null;
+      const taxes = withTax != null && base != null ? formatINR(Math.max(0, Math.round(withTax - base))) : "₹—";
       return {
         id: r.id,
         name: r.name,
@@ -186,6 +196,9 @@ export default function Home() {
         rating,
         image: imageUrl,
         url: (r as any).seoUrl ?? "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        propertyLabel,
+        distance,
+        taxes,
       };
     });
   }, []);
@@ -304,31 +317,45 @@ export default function Home() {
           {hotels.map((h: HotelCard) => (
             <div
               key={h.id}
-              className="min-w-[260px] max-w-[260px] snap-start bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm"
+              className="min-w-[300px] max-w-[300px] snap-start bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm"
             >
-              <div className="h-40 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                <img src={h.image} alt={h.name} className="w-24 h-24 object-contain" />
+              <div className="h-44 bg-slate-100 dark:bg-slate-800">
+                <img src={h.image} alt={h.name} className="w-full h-full object-cover" />
               </div>
-              <div className="p-4 flex flex-col gap-2">
+              <div className="p-4 flex flex-col gap-3">
+                <h3 className="text-lg font-semibold tracking-tight line-clamp-2">{h.name}</h3>
+
                 <div>
-                  <h3 className="text-base font-semibold line-clamp-2">{h.name}</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400">{h.location}</p>
+                  <div className="text-2xl font-extrabold text-emerald-700">{h.price}</div>
+                  <div className="text-xs text-slate-600">+ {h.taxes} taxes & fees</div>
+                  <div className="text-xs text-slate-500">Per Night</div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-amber-500">
-                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 00-1.175 0l-2.802 2.036c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span className="text-sm font-medium">{h.rating}</span>
-                  </div>
-                  <span className="text-sm font-semibold">{h.price} / night</span>
-                </div>
+
                 <button
-                  className="mt-1 rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm h-9 px-3"
+                  className="mt-1 self-start rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm h-10 px-5"
                   onClick={() => openExternal(h.url)}
                 >
-                  View on MakeMyTrip
+                  VIEW DETAILS
                 </button>
+
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                    {h.rating.toFixed(1)}
+                  </span>
+                  <span className="text-blue-700 dark:text-blue-400 text-sm font-semibold">
+                    {h.rating >= 4.5 ? "Excellent" : h.rating >= 4.0 ? "Very Good" : h.rating >= 3.5 ? "Good" : "Average"}
+                  </span>
+                </div>
+
+                <div className="text-center text-sm py-2 border border-slate-200 dark:border-slate-800 rounded">
+                  {h.propertyLabel}
+                </div>
+                <div className="text-center text-sm py-2 border border-slate-200 dark:border-slate-800 rounded">
+                  {h.distance}
+                </div>
+                <div className="text-center text-sm py-2 border border-slate-200 dark:border-slate-800 rounded">
+                  Free Cancellation
+                </div>
               </div>
             </div>
           ))}
