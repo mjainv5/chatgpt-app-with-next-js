@@ -29,7 +29,11 @@ function widgetMeta(widget: ContentWidget) {
 }
 
 const handler = createMcpHandler(async (server) => {
-  const html = await getAppsSdkCompatibleHtml(baseURL, "/");
+  // ✅ Updated URL to MakeMyTrip Goa Budget Hotels page
+  const html = await getAppsSdkCompatibleHtml(
+    "https://www.makemytrip.com",
+    "/hotels/budget-hotels-in-goa.html"
+  );
 
   const contentWidget: ContentWidget = {
     id: "show_content",
@@ -38,9 +42,11 @@ const handler = createMcpHandler(async (server) => {
     invoking: "Loading content...",
     invoked: "Content loaded",
     html: html,
-    description: "Displays the homepage content",
-    widgetDomain: "https://nextjs.org/docs",
+    description: "Displays the Goa Budget Hotels page content from MakeMyTrip",
+    widgetDomain: "https://www.makemytrip.com/hotels/budget-hotels-in-goa.html",
   };
+
+  // Register the resource (HTML widget)
   server.registerResource(
     "content-widget",
     contentWidget.templateUri,
@@ -69,14 +75,15 @@ const handler = createMcpHandler(async (server) => {
     })
   );
 
+  // Register the tool (interactive endpoint)
   server.registerTool(
     contentWidget.id,
     {
       title: contentWidget.title,
       description:
-        "Fetch and display the homepage content with the name of the user",
+        "Fetch and display the Goa budget hotels content with the user's name",
       inputSchema: {
-        name: z.string().describe("The name of the user to display on the homepage"),
+        name: z.string().describe("The name of the user to display on the page"),
       },
       _meta: widgetMeta(contentWidget),
     },
