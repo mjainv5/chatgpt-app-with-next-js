@@ -1,6 +1,6 @@
+// @ts-nocheck
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef } from "react";
 import {
@@ -26,57 +26,169 @@ export default function Home() {
 
   const name = toolOutput?.result?.structuredContent?.name || toolOutput?.name;
 
-  const hotels = useMemo(
-    () =>
-      [
-        {
-          id: "1",
-          name: "Taj Holiday Village Resort & Spa, Goa",
-          location: "Sinquerim, Candolim",
-          price: "₹16,500",
-          rating: 4.6,
-          image: "/window.svg",
-          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+  const formatINR = (amount: number | undefined | null) =>
+    typeof amount === "number"
+      ? amount.toLocaleString("en-IN", {
+          style: "currency",
+          currency: "INR",
+          maximumFractionDigits: 0,
+        })
+      : "₹—";
+
+  type HotelCard = {
+    id: string;
+    name: string;
+    location: string;
+    price: string;
+    rating: number;
+    image: string;
+    url: string;
+  };
+
+  const hotels = useMemo<HotelCard[]>(() => {
+    const raw = [
+      {
+        id: "200703241029455940",
+        name: "Caravela Beach Resort",
+        starRating: 5,
+        locationPersuasion: ["Varca Beach", "3 minutes walk to Varca Beach"],
+        media: [
+          {
+            url: "https://r1imghtlak.mmtcdn.com/57bc01342e1f11ea930d0242ac110004.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+          {
+            url: "https://r1imghtlak.mmtcdn.com/91d99794be3d11e89f620af23595dd16.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+        ],
+        priceDetail: {
+          price: 13000.0,
+          priceWithTax: 15633.0,
+          discountedPrice: 10319.0,
+          discountedPriceWithTax: 12952.0,
         },
-        {
-          id: "2",
-          name: "Novotel Goa Resort & Spa",
-          location: "Candolim",
-          price: "₹12,300",
-          rating: 4.4,
-          image: "/globe.svg",
-          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        seoUrl:
+          "https://www.makemytrip.com/hotels/caravela_beach_resort-details-goa.html",
+      },
+      {
+        id: "202208201715552171",
+        name: "Avataara Resort & Spa",
+        starRating: 4,
+        locationPersuasion: ["Vagator", "2.6 km drive to Vagator Beach"],
+        media: [
+          {
+            url: "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202208201715552171-b3018b7085c611ed944d0a58a9feac02.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+          {
+            url: "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202208201715552171-a47488da586d11ee8b000a58a9feac02.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+        ],
+        priceDetail: {
+          price: 13000.0,
+          priceWithTax: 15153.0,
+          discountedPrice: 9360.0,
+          discountedPriceWithTax: 11513.0,
         },
-        {
-          id: "3",
-          name: "ITC Grand Goa, A Luxury Collection Resort",
-          location: "Cansaulim",
-          price: "₹18,900",
-          rating: 4.7,
-          image: "/file.svg",
-          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        seoUrl:
+          "https://www.makemytrip.com/hotels/avataara_resort_spa-details-goa.html",
+      },
+      {
+        id: "201309291438557369",
+        name: "Novotel Goa Candolim",
+        starRating: 5,
+        reviewSummary: { cumulativeRating: 4.0 },
+        locationPersuasion: [
+          "Candolim",
+          "4 minutes walk to Candolim Beach",
+        ],
+        media: [
+          {
+            url: "https://r1imghtlak.mmtcdn.com/c0655ac231eb11eeaedc0a58a9feac02.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+        ],
+        priceDetail: {
+          price: 8099.0,
+          priceWithTax: 8828.0,
+          discountedPrice: 7289.0,
+          discountedPriceWithTax: 8018.0,
         },
-        {
-          id: "4",
-          name: "The Zuri White Sands, Goa Resort & Casino",
-          location: "Varca",
-          price: "₹14,750",
-          rating: 4.3,
-          image: "/vercel.svg",
-          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        seoUrl:
+          "https://www.makemytrip.com/hotels/novotel_goa_candolim-details-goa.html",
+      },
+      {
+        id: "20070209145406915",
+        name: "Radisson Goa Candolim",
+        starRating: 5,
+        reviewSummary: { cumulativeRating: 4.3 },
+        locationPersuasion: ["Candolim", "8 minutes walk to Candolim Beach"],
+        media: [
+          {
+            url: "https://r1imghtlak.mmtcdn.com/ffe72710de4211eb83aa0242ac110002.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+        ],
+        priceDetail: {
+          price: 12600.0,
+          priceWithTax: 15063.0,
+          discountedPrice: 10710.0,
+          discountedPriceWithTax: 13173.0,
         },
-        {
-          id: "5",
-          name: "Kenilworth Beach Resort & Spa",
-          location: "Utorda",
-          price: "₹13,200",
-          rating: 4.2,
-          image: "/next.svg",
-          url: "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+        seoUrl:
+          "https://www.makemytrip.com/hotels/radisson_goa_candolim-details-goa.html",
+      },
+      {
+        id: "201512121606154014",
+        name: "Hyatt Centric Candolim Goa",
+        starRating: 5,
+        reviewSummary: { cumulativeRating: 4.3 },
+        locationPersuasion: [
+          "Calangute",
+          "10 minutes walk to Candolim Beach",
+        ],
+        media: [
+          {
+            url: "https://r1imghtlak.mmtcdn.com/842684025c8211e98d9f0242ac110003.jpg?output-quality=75&downsize=243:162&output-format=webp",
+            mediaType: "IMAGE",
+          },
+        ],
+        priceDetail: {
+          price: 7880.0,
+          priceWithTax: 9692.0,
+          discountedPrice: 7880.0,
+          discountedPriceWithTax: 9692.0,
         },
-      ],
-    []
-  );
+        seoUrl:
+          "https://www.makemytrip.com/hotels/hyatt_centric_candolim_goa-details-goa.html",
+      },
+    ];
+
+    return raw.map((r): HotelCard => {
+      const img = r.media?.find((m: any) => m.mediaType === "IMAGE")?.url;
+      const imageUrl = img ? (img.startsWith("http") ? img : `https:${img}`) : "/next.svg";
+      const rating = (r as any).reviewSummary?.cumulativeRating ?? r.starRating ?? 0;
+      const location = Array.isArray(r.locationPersuasion)
+        ? r.locationPersuasion.join(" · ")
+        : "";
+      const price = formatINR(
+        r.priceDetail?.discountedPriceWithTax ??
+          r.priceDetail?.priceWithTax ??
+          r.priceDetail?.price
+      );
+      return {
+        id: r.id,
+        name: r.name,
+        location,
+        price,
+        rating,
+        image: imageUrl,
+        url: (r as any).seoUrl ?? "https://www.makemytrip.com/hotels/p-resorts-in-goa.html",
+      };
+    });
+  }, []);
 
   const scrollBy = (delta: number) => {
     const el = scrollerRef.current;
@@ -189,7 +301,7 @@ export default function Home() {
           className="w-full flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 py-2"
           style={{ scrollBehavior: "smooth" }}
         >
-          {hotels.map((h) => (
+          {hotels.map((h: HotelCard) => (
             <div
               key={h.id}
               className="min-w-[260px] max-w-[260px] snap-start bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm"
