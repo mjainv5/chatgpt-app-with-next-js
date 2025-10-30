@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import hotelsData from "@/data/hotels.json";
+// JSON will be imported dynamically inside the component to avoid ESM assertion issues
 
 type PageParams = {
   params: { id: string };
 };
 
-export default function HotelDetailPage({ params }: PageParams) {
+export default async function HotelDetailPage({ params }: PageParams) {
   const id = params.id;
-  const hotel: any = (hotelsData as any)?.response?.[id];
+  const hotelsData = (await import("../../data/hotels.json")).default as any;
+  const hotel: any = hotelsData?.response?.[id];
 
   if (!hotel) {
     notFound();
@@ -153,6 +154,5 @@ export default function HotelDetailPage({ params }: PageParams) {
     </div>
   );
 }
-
 
 
