@@ -331,12 +331,13 @@ export default function Home() {
                   <div className="text-xs text-slate-500">Per Night</div>
                 </div>
 
-                <button
+                <Link
                   className="mt-1 self-start rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm h-10 px-5"
-                  onClick={() => openExternal(h.url)}
+                  href={`/hotel/${h.id}`}
+                  prefetch={true}
                 >
                   VIEW DETAILS
-                </button>
+                </Link>
 
                 <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
                   <span className="inline-flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
