@@ -1,0 +1,168 @@
+{
+  "response": {
+    "200703241029455940": {
+      "hotelDetails": {
+        "supressHouseRules": false,
+        "address": {
+          "line1": "Varca Beach, Varca Village, Salcete - Goa",
+          "line2": "Varca Beach"
+        },
+        "checkinTime": "3 PM",
+        "checkoutTime": "11 AM",
+        "id": "200703241029455940",
+        "bedroomCount": 0,
+        "ingoId": "1000001472",
+        "name": "Caravela Beach Resort",
+        "maskedPropertyName": false,
+        "showCallToBook": false,
+        "isABO": false,
+        "locationDetail": {
+          "id": "CTGOI",
+          "name": "Goa",
+          "type": "city",
+          "countryId": "IN",
+          "countryName": "India"
+        },
+        "starRating": 5,
+        "starRatingType": "STAR",
+        "highSellingAltAcco": false,
+        "pinCode": "403721",
+        "propertyType": "Resort",
+        "propertyLabel": "Resort",
+        "hotelIcon": "https://r1imghtlak.mmtcdn.com/57bc01342e1f11ea930d0242ac110004.jpg",
+        "primaryArea": "Varca Beach",
+        "shortDesc": "The Caravela Beach Resort is an independent 5-Star Deluxe beach resort comprising of 195 rooms, several of which have direct sea ",
+        "entireProperty": false,
+        "secrecyOption": false,
+        "stayType": "Resort",
+        "altAcco": false,
+        "lat": 15.209597,
+        "lng": 73.93258,
+        "amenitiesRatingData": {
+          "title": "What guests said",
+          "showIcon": false,
+          "highlights": [
+            {
+              "iconUrl": "https://promos.makemytrip.com/altaccoimages/ugc/ugc_amenities2.webp",
+              "text": "Amenities rated <b><font color='#0C58B4'>4.3</font></b> by guests",
+              "theme": null
+            }
+          ],
+          "summary": {
+            "iconUrl": "https://promos.makemytrip.com/Hotels_product/Component_1059.png",
+            "text": "Guests praised the property for its extensive amenities including a stunning private beach, clean swimming pools, and numerous activities for all ages. The kids' play area and daily organized activities received special commendation. The golf course and vast greenery added to the charm. Staff efficiency stood out, assisting with quick requests and ensuring cleanliness. Overall, the amenities contributed significantly to making each stay enjoyable and memorable.",
+            "theme": null
+          }
+        },
+        "locationPersuasion": [
+          "Varca Beach",
+          "3 minutes walk to Varca Beach"
+        ],
+        "mmtHotelCategory": "LUXE",
+        "mmtHotelText": "Luxury Beachfront Property Amidst Lush Tropical Gardens",
+        "luxeIcon": "https://promos.makemytrip.com/Hotels_product/Luxe/Detail_luxe2x.png",
+        "heroImage": "https://promos.makemytrip.com/Hotels_product/Luxe/Hero/Caravela%20Beach%20Resort%20-%20200703241029455940.webp",
+        "heroVideoUrl": "https://juggler.makemytrip.com/juggler/stream/key/20cf30c2-711a-4505-8c24-c6f8fce2951c/master.m3u8",
+        "groupBookingQueryEnabled": false,
+        "houseRulesV2": {
+          "tag": false,
+          "allRules": [
+            {
+              "category": "Must Read Rules",
+              "id": "restrictions",
+              "showInHost": false,
+              "rules": [
+                { "text": "Primary Guest should be atleast 18 years of age." },
+                { "text": "Passport, Aadhaar, Driving License and Govt. ID are accepted as ID proof(s)" },
+                { "text": "Pets are not allowed" },
+                { "text": "Outside food is not allowed" }
+              ],
+              "showInDetailHome": true,
+              "expandRules": true,
+              "showInL2Page": true,
+              "showArrowInDetailHome": true
+            }
+          ],
+          "highlightMustReadRules": {
+            "highlightedIcon": "https://go-assets.ibcdn.com/u/MMT/images/1752828299662-couple.png",
+            "highlightedTitle": "Couple/Bachelor Rules",
+            "ruleText": "Unmarried couples allowed. Local ids are allowed",
+            "background": "#E6FFF9"
+          },
+          "isMealDetailsPresent": false
+        }
+      },
+      "mediaV2": {
+        "grid": {
+          "images": [
+            {
+              "url": "//r1imghtlak.mmtcdn.com/57bc01342e1f11ea930d0242ac110004.jpg?&output-quality=75&downsize=375:218&crop=375:218;0,41&output-format=webp",
+              "filterInfo": "Views",
+              "title": "57bc01342e1f11ea930d0242ac110004.jpg",
+              "mediaType": "IMAGE"
+            },
+            {
+              "url": "//r1imghtlak.mmtcdn.com/91d99794be3d11e89f620af23595dd16.jpg?&output-quality=75&downsize=375:218&crop=375:218;0,20&output-format=webp",
+              "filterInfo": "Outdoors",
+              "title": "Hotel Overview",
+              "mediaType": "IMAGE"
+            },
+            {
+              "url": "//r1imghtlak.mmtcdn.com/b96c5e94d98911eba0db0242ac110002.jpg?&output-quality=75&downsize=375:218&crop=375:218;0,15&output-format=webp",
+              "filterInfo": "Room",
+              "title": "b96c5e94d98911eba0db0242ac110002.jpg",
+              "mediaType": "IMAGE",
+              "tags": [
+                "good room",
+                "comfortable bed",
+                "spacious rooms",
+                "good inroom amenities",
+                "clean beds"
+              ]
+            },
+            {
+              "url": "//r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200703241029455940-8e932638d56d11e59bdf001ec9b85d13.jpg?&output-quality=75&downsize=375:218&crop=375:218;5,0&output-format=webp",
+              "filterInfo": "Outdoors",
+              "title": "1 - Aerial Golf Panorama.jpg",
+              "mediaType": "IMAGE"
+            },
+            {
+              "url": "//r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200703241029455940-ebb5d282042411e990670242ac110002.jpg?&output-quality=75&downsize=375:218&crop=375:218;0,15&output-format=webp",
+              "filterInfo": "Restaurants",
+              "title": "Food",
+              "mediaType": "IMAGE"
+            },
+            {
+              "url": "//r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200703241029455940-c27f2e249d5711edb0930a58a9feac02.jpg?&output-quality=75&downsize=375:218&crop=375:218;0,16&output-format=webp",
+              "filterInfo": "Swimming Pool",
+              "title": "c27f2e249d5711edb0930a58a9feac02.jpg",
+              "mediaType": "IMAGE"
+            }
+          ]
+        }
+      },
+      "ugcSummary": {
+        "cardTitle": "Review & Ratings",
+        "data": {
+          "source": "MMT",
+          "cumulativeRating": 4.5,
+          "reviewCount": 3216,
+          "ratingCount": 5240,
+          "showUpvote": true,
+          "seekTagDetails": {
+            "seekTagsTitle": "Review Summary",
+            "seekTagsSubtitle": "Powered by Myra.AI",
+            "seekTagIcon": "https://promos.makemytrip.com/Hotels_product/Component_1059.png",
+            "seekTagSummary": "Caravela Beach Resort shines with its stunning private beach and lush green surroundings. Guests greatly appreciate the warm, attentive staff, with standout mentions for the housekeeping team and restaurant service. The expansive breakfast buffet offers a wide variety, and the property itself is well-maintained, making it perfect for families. Activities for kids keep them engaged, ensuring a memorable stay.",
+            "seekTagSpans": [],
+            "maxSeekTagCount": 10,
+            "defaultSeekTagCount": 5
+          }
+        }
+      }
+    }
+  },
+  "correlationKey": "737830e5-3831-481d-ad54-a81ad7d039f8"
+}
+
+
